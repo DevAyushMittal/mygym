@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Beyond X Fitness</title>
     <link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
 <div style="height: 100px; width: 100%; text-align:center; margin-top: 20px;">
@@ -70,7 +71,7 @@
 <!-- end -->
 
 <!-- scroll btn  -->
-<div style="width: 100%; margin-top:130px;" >
+<div class="scrl-btn" style="width: 100%; margin-top:130px;" >
 <section id="section10" class="demo">
   <a href="#gallery"><span></span>Scroll</a>
 </section>
@@ -80,89 +81,198 @@
 
 <!-- gallery -->
 
-<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-  
-<div class="wrap" id="gallery">  
-  <div class="slider">
-    
-    <div class="item">
-      <img src="images/img1.png" alt="">
+
+    <div class="slider">
+        <div class="slide" ><img src="images/img1.png" /><p>Weight Training</p></div>
+        <div class="slide" ><img src="images/img2.png" /><p>Weight Training</p></div>
+        <div class="slide" ><img src="images/img3.jpg" /><p>Weight Training</p></div>
+        <div class="slide" ><img src="images/img4.png" /><p>Weight Training</p></div>
+
+     
     </div>
-    <div class="item">
-      <img src="images/img2.png" alt="">
-    </div>
-    <div class="item">
-      <img src="images/img3.jpg" alt="">
-    </div>
-    <div class="item">
-      <img src="https://images.unsplash.com/photo-1507032336878-13f159192baa?dpr=1&auto=format&fit=crop&w=568&h=379&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="">
-    </div>
-    <div class="item">
-      <img src="https://images.unsplash.com/photo-1506268919522-a927511962a9?dpr=1&auto=format&fit=crop&w=568&h=379&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="">
-    </div>
-    <div class="item">
-      <img src="https://images.unsplash.com/photo-1501879779179-4576bae71d8d?dpr=1&auto=format&fit=crop&w=568&h=379&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="">
-    </div>
-    <div class="item">
-      <img src="https://images.unsplash.com/photo-1494253188410-ff0cdea5499e?dpr=1&auto=format&fit=crop&w=568&h=379&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="">
-    </div>
-    <div class="item">
-      <img src="https://images.unsplash.com/photo-1511965682784-5ec68f744ea1?dpr=1&auto=format&fit=crop&w=568&h=319&q=60&cs=tinysrgb&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt="">
-    </div>
-    
-  </div>
+
+<!-- end -->
+
+
+<footer style="width: 100%; margin-top: 50px;">
+<div class="footer" style="height:100px; width:100%; background-color: #000; display: grid; grid-template-columns: 0.83fr 1fr;">
+    <div class="img-my" style="display: flex;"> <img style="margin: auto; margin-right: 20px !important;" src="images/food.png" height="50px;"></div>
+    <div class="copyright" style="display: flex;"><h4 style="color: aliceblue; margin:auto 0px;">Website By Ayush</h1></div>
 </div>
 
-<!-- emd -->
 
-<div class="footer" style="margin-top:10px;   width: 100%; background:#000; padding:10px; display: flex; height: 30px;" >
-       <h1 style="margin: auto; color:#fff; font-size:20px;">Designed by Ayush</h1>
-</div>
-
+</footer>
 
 
 <script>
-
-$('.slider').slick({
-  slidesToShow: 3,
-  slidesToScroll: 1,
-  arrows: true,
-  dots: false,
-  centerMode: true,
-  variableWidth: true,
-  infinite: true,
-  focusOnSelect: true,
-  cssEase: 'linear',
-  touchMove: true,
-  prevArrow:'<button class="slick-prev"> < </button>',
-  nextArrow:'<button class="slick-next"> > </button>',
-  
-  //         responsive: [                        
-  //             {
-  //               breakpoint: 576,
-  //               settings: {
-  //                 centerMode: false,
-  //                 variableWidth: false,
-  //               }
-  //             },
-  //         ]
-});
-
-
-var imgs = $('.slider img');
-imgs.each(function(){
-  var item = $(this).closest('.item');
-  item.css({
-    'background-image': 'url(' + $(this).attr('src') + ')', 
-    'background-position': 'center',            
-    '-webkit-background-size': 'cover',
-    'background-size': 'cover', 
-  });
-  $(this).hide();
-});
-</script>
-
+/*! Elastic Slider
+  */
+ 
+ window.addEventListener('load', onWndLoad, false);
+ 
+ function onWndLoad() {
+    
+     var slider = document.querySelector('.slider');
+     var sliders = slider.children;
+    
+    
+    
+    
+     var initX = null;  
+     var transX = 0;
+     var rotZ = 0;
+     var transY = 0;
+    
+     var curSlide = null;
+     
+     var Z_DIS = 50;
+     var Y_DIS = 10;
+     var TRANS_DUR = 0.4;
+   
+      var images=document.querySelectorAll('img');
+   for(var i=0;i<images.length;i++)
+     {
+       images[i].onmousemove=function(e){
+         e.preventDefault()
+         
+       }
+       images[i].ondragstart=function(e){
+         return false;
+         
+       }
+     }
+   
+     function init() {
+        
+         var z = 0, y = 0;
+ 
+         for (var i = sliders.length-1; i >=0; i--) {
+             sliders[i].style.transform = 'translateZ(' + z + 'px) translateY(' + y + 'px)';
+            
+             z -= Z_DIS;
+             y += Y_DIS;
+         }
+ 
+ 
+         attachEvents(sliders[sliders.length - 1]);
+ 
+       
+        
+     }
+     function attachEvents(elem) {
+         curSlide = elem;
+ 
+         curSlide.addEventListener('mousedown', slideMouseDown, false);
+         curSlide.addEventListener('touchstart', slideMouseDown, false);
+     }
+     init();
+     function slideMouseDown(e) {
+     
+         if (e.touches) {
+             initX = e.touches[0].clientX;
+         }
+         else {
+             initX = e.pageX;
+         }
+      
+        
+         document.addEventListener('mousemove', slideMouseMove, false);
+         document.addEventListener('touchmove', slideMouseMove, false);
+ 
+         document.addEventListener('mouseup', slideMouseUp, false);
+         document.addEventListener('touchend', slideMouseUp, false);
+     }
+     var prevSlide = null;
+    
+     function slideMouseMove(e) {
+         var mouseX;
+       
+         if (e.touches) {
+             mouseX = e.touches[0].clientX;
+         }
+         else {
+             mouseX = e.pageX;
+         }
+ 
+         transX += mouseX - initX;
+         rotZ = transX / 20;
+ 
+         transY = -Math.abs(transX / 15);
+      
+       
+       
+         curSlide.style.transition = 'none';
+         curSlide.style.webkitTransform = 'translateX(' + transX + 'px)' + ' rotateZ(' + rotZ + 'deg)' + ' translateY(' + transY + 'px)';
+        curSlide.style.transform = 'translateX(' + transX + 'px)' + ' rotateZ(' + rotZ + 'deg)' + ' translateY(' + transY + 'px)';
+         var j = 1;
+         //remains elements
+          for (var i = sliders.length -2; i >= 0; i--) {
+ 
+         sliders[i].style.webkitTransform = 'translateX(' + transX/(2*j) + 'px)' + ' rotateZ(' + rotZ/(2*j) + 'deg)' + ' translateY(' + (Y_DIS*j) + 'px)'+ ' translateZ(' + (-Z_DIS*j) + 'px)';
+         sliders[i].style.transform = 'translateX(' + transX/(2*j) + 'px)' + ' rotateZ(' + rotZ/(2*j) + 'deg)' + ' translateY(' + (Y_DIS*j) + 'px)'+ ' translateZ(' + (-Z_DIS*j) + 'px)';
+         sliders[i].style.transition = 'none';
+         j++;
+         }      
+         
+           
+          
+           initX =mouseX;
+           e.preventDefault();
+           if (Math.abs(transX) >= curSlide.offsetWidth-30) {
+            
+               document.removeEventListener('mousemove', slideMouseMove, false);
+               document.removeEventListener('touchmove', slideMouseMove, false);
+               curSlide.style.transition = 'ease 0.2s';
+               curSlide.style.opacity = 0;
+               prevSlide = curSlide;
+               attachEvents(sliders[sliders.length - 2]);
+               slideMouseUp();
+               setTimeout(function () {
+                  
+                
+                  
+                
+                   
+                   slider.insertBefore(prevSlide, slider.firstChild);
+                   
+                   prevSlide.style.transition = 'none';
+                   prevSlide.style.opacity = '1';
+                   slideMouseUp();
+                 
+               },201);
+             
+              
+               
+               return;
+           }
+     }
+     function slideMouseUp() {
+         transX = 0;
+         rotZ = 0;
+         transY = 0;
+       
+         curSlide.style.transition = 'cubic-bezier(0,1.95,.49,.73) '+TRANS_DUR+'s';
+ 
+         curSlide.style.webkitTransform = 'translateX(' + transX + 'px)' + 'rotateZ(' + rotZ + 'deg)' + ' translateY(' + transY + 'px)';
+        curSlide.style.transform = 'translateX(' + transX + 'px)' + 'rotateZ(' + rotZ + 'deg)' + ' translateY(' + transY + 'px)';
+         //remains elements
+         var j = 1;
+         for (var i = sliders.length -  2; i >= 0; i--) {
+                sliders[i].style.transition = 'cubic-bezier(0,1.95,.49,.73) ' + TRANS_DUR / (j + 0.9) + 's';
+         sliders[i].style.webkitTransform = 'translateX(' + transX + 'px)' + 'rotateZ(' + rotZ + 'deg)' + ' translateY(' + (Y_DIS*j) + 'px)' + ' translateZ(' + (-Z_DIS*j) + 'px)';
+            sliders[i].style.transform = 'translateX(' + transX + 'px)' + 'rotateZ(' + rotZ + 'deg)' + ' translateY(' + (Y_DIS*j) + 'px)' + ' translateZ(' + (-Z_DIS*j) + 'px)';
+ 
+         j++;
+         }
+          
+         document.removeEventListener('mousemove', slideMouseMove, false);
+         document.removeEventListener('touchmove', slideMouseMove, false);
+      
+     }
+ 
+ 
+ }
+ 
+ </script>
 </body>
 </html>
