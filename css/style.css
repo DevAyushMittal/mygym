@@ -561,7 +561,6 @@ h1.flag {
   font-size: var(--font-size);
   position: relative;
   cursor: default;
-  margin: 20px;
   /* Paper Shadow */
   /* Each letter */
   /* Hover interaction */
@@ -587,7 +586,7 @@ h1.flag span {
       -ms-user-select: none;
           user-select: none;
   display: inline-block;
-  width: 3em;
+  width: 2em;
   padding-top: 0.8em;
   padding-bottom: 0.8em;
   text-align: center;
